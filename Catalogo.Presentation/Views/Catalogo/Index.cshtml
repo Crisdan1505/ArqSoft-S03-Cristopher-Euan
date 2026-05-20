@@ -1,0 +1,100 @@
+﻿@model List<CatalogoApp.Domain.Models.Item>
+
+@{
+    ViewData["Title"] = "Mi Catálogo";
+}
+
+<div class="container mt-4">
+
+    <!-- TITULO -->
+    <div class="mb-4">
+        <h1 class="text-info fw-bold">
+            🎮 Mi Catálogo Gamer
+        </h1>
+
+        <p class="text-light">
+            Explora y administra tu colección de videojuegos
+        </p>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="mb-4 p-3 rounded border border-info bg-dark">
+
+        <span class="text-info fw-bold me-3">
+            Géneros:
+        </span>
+
+        <a class="btn btn-outline-info btn-sm me-2 mb-2"
+               asp-action="Index">
+            Todos
+        </a>
+
+        @foreach (var gen in ViewBag.Generos as List<string>)
+        {
+            <a class="btn btn-outline-primary btn-sm me-2 mb-2"
+                   asp-action="Index"
+                   asp-route-genero="@gen">
+
+                @gen
+            </a>
+        }
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+
+                <div class="card h-100 bg-dark border-info shadow">
+
+                    <div class="card-body">
+
+                        <h4 class="card-title text-info">
+                            @item.Titulo
+                        </h4>
+
+                        <hr class="border-info" />
+
+                        <p class="card-text text-light">
+                            <strong>Género:</strong> @item.Genero
+                        </p>
+
+                        <p class="card-text text-light">
+                            <strong>Año:</strong> @item.Ano
+                        </p>
+
+                    </div>
+
+                    <div class="card-footer bg-transparent border-info">
+
+                        <a class="btn btn-primary w-100"
+                               asp-action="Detalle"
+                               asp-route-id="@item.Id">
+
+                            Ver Detalles
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    <!-- BOTON AGREGAR -->
+    <div class="mt-4 mb-5">
+
+        <a class="btn btn-success btn-lg"
+               asp-action="Agregar">
+
+            + Agregar Videojuego
+        </a>
+
+    </div>
+
+</div>

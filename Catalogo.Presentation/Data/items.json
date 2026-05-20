@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Titulo": "Devil May Cry",
+    "Genero": "Hack and Slash",
+    "Consola": "PlayStation 2",
+    "Ano": 2001,
+    "Descripcion": "Dante, cazador de demonios, enfrenta a Mundus."
+  },
+  {
+    "Id": 2,
+    "Titulo": "Assassin\u0027S Creed",
+    "Genero": "RPG",
+    "Consola": "Xbox,Pc,Ps4",
+    "Ano": 2017,
+    "Descripcion": "Libera a Francia de la tiran\u00EDa"
+  }
+]

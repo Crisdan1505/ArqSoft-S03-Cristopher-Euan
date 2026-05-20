@@ -1,0 +1,36 @@
+﻿@model CatalogoApp.Domain.Models.Item
+
+<h1>Agregar videojuego</h1>
+
+<form asp-action="Agregar" method="post">
+    <div>
+        <label>Título</label>
+        <input asp-for="Titulo" />
+    </div>
+
+    <div>
+        <label>Género</label>
+        <input asp-for="Genero" />
+    </div>
+
+    <div>
+        <label>Consola</label>
+        <input asp-for="Consola" />
+    </div>
+
+    <div>
+        <label>Año</label>
+        <input asp-for="Ano" type="number" />
+    </div>
+
+    <div>
+        <label>Descripción</label>
+        <textarea asp-for="Descripcion"></textarea>
+    </div>
+
+    <button type="submit">Guardar</button>
+</form>
+
+<hr />
+
+<a asp-action="Index">&larr; Cancelar</a>
