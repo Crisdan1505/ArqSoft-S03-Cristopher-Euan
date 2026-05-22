@@ -27,6 +27,28 @@ namespace CatalogoApp.Presentation.Controllers
             return View(items);
         }
 
+        // CALIFICAR VIDEOJUEGO
+        [HttpPost]
+        public IActionResult Calificar(string videojuego, int puntuacion, string comentario)
+        {
+            var usuario = HttpContext.Session.GetString("Usuario");
+
+            if (string.IsNullOrEmpty(usuario))
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            var items = _service.ObtenerTodos();
+
+            ViewBag.Generos = _service.ObtenerGeneros();
+            ViewBag.Mensaje = "Calificación enviada correctamente";
+            ViewBag.Videojuego = videojuego;
+            ViewBag.Puntuacion = puntuacion;
+            ViewBag.Comentario = comentario;
+
+            return View("Index", items);
+        }
+
         // Detalle de un item
         public IActionResult Detalle(int id)
         {

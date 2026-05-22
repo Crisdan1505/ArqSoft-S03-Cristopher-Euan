@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Registrarse";
+}
+
+<h2>Crear Cuenta</h2>
+
+<form method="post">
+
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input type="text"
+               name="nombre"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Correo</label>
+        <input type="email"
+               name="correo"
+               class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password"
+               name="password"
+               class="form-control" />
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+        Crear Cuenta
+    </button>
+
+</form>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success mt-3">
+        @ViewBag.Mensaje
+    </div>
+}

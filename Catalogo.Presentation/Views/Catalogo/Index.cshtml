@@ -1,4 +1,5 @@
-﻿@model List<CatalogoApp.Domain.Models.Item>
+﻿@using Microsoft.AspNetCore.Http
+@model List<CatalogoApp.Domain.Models.Item>
 
 @{
     ViewData["Title"] = "Mi Catálogo";
@@ -6,7 +7,6 @@
 
 <div class="container mt-4">
 
-    <!-- TITULO -->
     <div class="mb-4">
         <h1 class="text-info fw-bold">
             🎮 Mi Catálogo Gamer
@@ -17,7 +17,6 @@
         </p>
     </div>
 
-    <!-- FILTROS -->
     <div class="mb-4 p-3 rounded border border-info bg-dark">
 
         <span class="text-info fw-bold me-3">
@@ -25,23 +24,21 @@
         </span>
 
         <a class="btn btn-outline-info btn-sm me-2 mb-2"
-               asp-action="Index">
+           asp-action="Index">
             Todos
         </a>
 
         @foreach (var gen in ViewBag.Generos as List<string>)
         {
             <a class="btn btn-outline-primary btn-sm me-2 mb-2"
-                   asp-action="Index"
-                   asp-route-genero="@gen">
-
+               asp-action="Index"
+               asp-route-genero="@gen">
                 @gen
             </a>
         }
 
     </div>
 
-    <!-- LISTA -->
     <div class="row">
 
         @foreach (var item in Model)
@@ -66,14 +63,55 @@
                             <strong>Año:</strong> @item.Ano
                         </p>
 
+                        <hr class="border-info" />
+
+                        @if (Context.Session.GetString("Usuario") != null)
+                        {
+                            <form method="post" asp-action="Calificar">
+
+                                <input type="hidden" name="videojuego" value="@item.Titulo" />
+
+                                <div class="mb-2">
+                                    <label class="text-light">Puntuación</label>
+                                    <select name="puntuacion" class="form-control">
+                                        <option value="0">0 estrellas</option>
+                                        <option value="1">1 estrella ⭐</option>
+                                        <option value="2">2 estrellas ⭐⭐</option>
+                                        <option value="3">3 estrellas ⭐⭐⭐</option>
+                                        <option value="4">4 estrellas ⭐⭐⭐⭐</option>
+                                        <option value="5">5 estrellas ⭐⭐⭐⭐⭐</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-2">
+                                    <label class="text-light">Comentario</label>
+                                    <textarea name="comentario"
+                                              class="form-control"
+                                              rows="2"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-warning w-100">
+                                    Enviar calificación
+                                </button>
+
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-warning w-100"
+                               asp-controller="Auth"
+                               asp-action="Login">
+                                Inicia sesión para calificar
+                            </a>
+                        }
+
                     </div>
 
                     <div class="card-footer bg-transparent border-info">
 
                         <a class="btn btn-primary w-100"
-                               asp-action="Detalle"
-                               asp-route-id="@item.Id">
-
+                           asp-action="Detalle"
+                           asp-route-id="@item.Id">
                             Ver Detalles
                         </a>
 
@@ -86,12 +124,37 @@
 
     </div>
 
-    <!-- BOTON AGREGAR -->
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-success mt-3">
+            @ViewBag.Mensaje
+        </div>
+
+        <div class="card bg-dark border-warning text-light mt-3 mb-4">
+            <div class="card-body">
+                <h5 class="text-warning">
+                    Reseña enviada
+                </h5>
+
+                <p>
+                    <strong>Videojuego:</strong> @ViewBag.Videojuego
+                </p>
+
+                <p>
+                    <strong>Puntuación:</strong> @ViewBag.Puntuacion / 5 ⭐
+                </p>
+
+                <p>
+                    <strong>Comentario:</strong> @ViewBag.Comentario
+                </p>
+            </div>
+        </div>
+    }
+
     <div class="mt-4 mb-5">
 
         <a class="btn btn-success btn-lg"
-               asp-action="Agregar">
-
+           asp-action="Agregar">
             + Agregar Videojuego
         </a>
 
