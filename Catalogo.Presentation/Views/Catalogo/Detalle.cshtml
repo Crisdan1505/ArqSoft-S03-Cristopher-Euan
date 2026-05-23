@@ -1,12 +1,73 @@
 ﻿@model CatalogoApp.Domain.Models.Item
 
-<h1>@Model.Titulo</h1>
+@{
+    ViewData["Title"] = "Detalle";
+}
 
-<p><strong>Género:</strong> @Model.Genero</p>
-<p><strong>Consola:</strong> @Model.Consola</p>
-<p><strong>Año:</strong> @Model.Ano</p>
-<p><strong>Descripción:</strong> @Model.Descripcion</p>
+<div class="detalle-container mt-5">
 
-<hr />
+    <div class="detalle-card">
 
-<a asp-action="Index">&larr; Volver al Catálogo</a>
+        <div class="detalle-header">
+
+            <div class="detalle-icon">
+                🎮
+            </div>
+
+            <div>
+                <h1 class="detalle-title">
+                    @Model.Titulo
+                </h1>
+
+                <p class="detalle-tag">
+                    Videojuego destacado del catálogo
+                </p>
+            </div>
+
+        </div>
+
+        <div class="detalle-info mt-4">
+
+            <div class="info-box">
+                <span class="info-label">🎯 Género</span>
+                <p>@Model.Genero</p>
+            </div>
+
+            <div class="info-box">
+                <span class="info-label">🕹 Consola</span>
+                <p>@Model.Consola</p>
+            </div>
+
+            <div class="info-box">
+                <span class="info-label">📅 Año</span>
+                <p>@Model.Ano</p>
+            </div>
+
+        </div>
+
+        <div class="descripcion-box mt-4">
+
+            <h3>
+                📖 Descripción
+            </h3>
+
+            <p>
+                @Model.Descripcion
+            </p>
+
+        </div>
+
+        <div class="mt-5">
+
+            <a asp-action="Index"
+               class="btn btn-outline-info btn-lg volver-btn">
+
+                ← Volver al Catálogo
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

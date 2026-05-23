@@ -5,17 +5,23 @@
     ViewData["Title"] = "Mi Catálogo";
 }
 
-<div class="container mt-4">
+<div class="catalogo-hero mb-5">
 
-    <div class="mb-4">
-        <h1 class="text-info fw-bold">
-            🎮 Mi Catálogo Gamer
+    <div class="hero-icon">
+        🎮
+    </div>
+
+    <div>
+        <h1 class="catalogo-title">
+            Mi Catálogo Gamer
         </h1>
 
-        <p class="text-light">
-            Explora y administra tu colección de videojuegos
+        <p class="catalogo-subtitle">
+            Explora, administra y califica tu colección de videojuegos favoritos
         </p>
     </div>
+
+</div>
 
     <div class="mb-4 p-3 rounded border border-info bg-dark">
 
@@ -124,32 +130,44 @@
 
     </div>
 
-    @if (ViewBag.Mensaje != null)
-    {
-        <div class="alert alert-success mt-3">
-            @ViewBag.Mensaje
-        </div>
+@if (ViewBag.Calificaciones != null && ViewBag.Calificaciones.Count > 0)
+{
+    <div class="mt-5">
 
-        <div class="card bg-dark border-warning text-light mt-3 mb-4">
-            <div class="card-body">
-                <h5 class="text-warning">
-                    Reseña enviada
-                </h5>
+        <h2 class="text-warning mb-4">
+            ⭐ Reseñas de la comunidad
+        </h2>
 
-                <p>
-                    <strong>Videojuego:</strong> @ViewBag.Videojuego
-                </p>
+        @foreach (var calificacion in ViewBag.Calificaciones)
+        {
+            <div class="card bg-dark border-warning text-light mt-3 mb-4 shadow">
 
-                <p>
-                    <strong>Puntuación:</strong> @ViewBag.Puntuacion / 5 ⭐
-                </p>
+                <div class="card-body">
 
-                <p>
-                    <strong>Comentario:</strong> @ViewBag.Comentario
-                </p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <h4 class="text-warning">
+                            🎮 @calificacion.Videojuego
+                        </h4>
+
+                        <span class="badge bg-warning text-dark fs-6">
+                            @calificacion.Puntuacion / 5 ⭐
+                        </span>
+
+                    </div>
+
+                    <p class="mb-0">
+                        <strong>Comentario:</strong>
+                        @calificacion.Comentario
+                    </p>
+
+                </div>
+
             </div>
-        </div>
-    }
+        }
+
+    </div>
+}
 
     <div class="mt-4 mb-5">
 
@@ -160,4 +178,3 @@
 
     </div>
 
-</div>

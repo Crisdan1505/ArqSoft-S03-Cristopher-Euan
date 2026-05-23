@@ -14,5 +14,13 @@
     "Consola": "Xbox,Pc,Ps4",
     "Ano": 2017,
     "Descripcion": "Libera a Francia de la tiran\u00EDa"
+  },
+  {
+    "Id": 3,
+    "Titulo": "Gears of War",
+    "Genero": "Shooter",
+    "Consola": "Xbox360, Xbox series, Xbox one",
+    "Ano": 2006,
+    "Descripcion": "Enfr\u00E9ntate contra los locus"
   }
 ]
